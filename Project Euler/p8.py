@@ -47,10 +47,16 @@ x = """73167176531330624919225119674426574742355349194934
 
 y = [y for y in x if y != '\n']
 y = map(int, y)
-sum_max = 0
+max_product = 0
 for n in range(0, len(y)):
-	current_sum = 0
 	for i in range (0,13):
-		print y[n+i]
-		current_sum += y[n+i]
-	print current_sum
+		if n+i >= len(y):
+			break
+		elif i == 0:
+			current_value = y[n+i]
+		else:
+			current_value *= y[n+i]
+	if current_value > max_product:
+		max_product = current_value
+print max_product
+		
