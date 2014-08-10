@@ -23,6 +23,7 @@
 # 71636269561882670428252483600823257530420752963450
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 
+import time 
 
 x = """73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -45,18 +46,24 @@ x = """73167176531330624919225119674426574742355349194934
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+#Brute calculation:
+# initial max = 0
+# for each 13 digit group in the list
+# get the product of those 13 digits
+def brute_calculation(y):
+	max_product = 0
+	for n in range(0, len(y)):
+		current_value = y[n]
+		for i in range (1,13):
+			if n+i >= len(y):
+				break
+			else:
+				current_value *= y[n+i]
+		if current_value > max_product:
+			max_product = current_value
+	return max_product
 y = [y for y in x if y != '\n']
 y = map(int, y)
-max_product = 0
-for n in range(0, len(y)):
-	for i in range (0,13):
-		if n+i >= len(y):
-			break
-		elif i == 0:
-			current_value = y[n+i]
-		else:
-			current_value *= y[n+i]
-	if current_value > max_product:
-		max_product = current_value
-print max_product
-		
+
+start_time = time.clock()
+print 'Brute Calculation: %d Execution Time: %s' % (brute_calculation(y), time.clock() - start_time)
