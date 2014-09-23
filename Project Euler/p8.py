@@ -66,4 +66,4 @@ y = [y for y in x if y != '\n']
 y = map(int, y)
 
 start_time = time.clock()
-print 'Brute Calculation: %d Execution Time: %s' % (brute_calculation(y), time.clock() - start_time)
+print 'Brute Calculation: %d Execution Time: %s seconds.' % (brute_calculation(y), time.clock() - start_time)
